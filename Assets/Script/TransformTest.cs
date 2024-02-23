@@ -25,7 +25,7 @@ public class TransformTest : MonoBehaviour
 
 		// Translate를 이용한 이동, 위의 코드와 동일
 		// World, Self 두가지 시점으로 이동 가능하다
-		transform.Translate(1, 0, 0);
+		transform.Translate(Vector3.right);
 
 		// 월드를 기준으로 이동
 		transform.Translate(1, 0, 0, Space.World);
