@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
 
 	private void Start()
 	{
+		Destroy(gameObject, 5f);
 		rigid.AddForce(transform.forward * force, ForceMode.Impulse);
 	}
 }

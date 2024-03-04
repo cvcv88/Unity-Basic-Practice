@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
 {
+	public Transform firePoint;
+	public GameObject bulletPrefab;
+
 	public Transform turretTransform;
 	public float turretRotateSpeed;
 
@@ -47,7 +50,7 @@ public class TankController : MonoBehaviour
 
 	private void Fire()
 	{
-
+		Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 	}
 
 	private void OnFire(InputValue value)
