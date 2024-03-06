@@ -5,13 +5,17 @@ using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
 {
+	public Rigidbody rigid;
+
 	public Transform firePoint;
 	public GameObject bulletPrefab;
 
 	public Transform turretTransform;
 	public float turretRotateSpeed;
 
-    public float moveSpeed;
+	// public float moveSpeed;
+	public float movePower; // ¿òÁ÷ÀÌ´Â Èû, Speed X
+	public float maxSpeed;
     public float rotateSpeed;
 
     private Vector3 moveDir;
@@ -20,13 +24,26 @@ public class TankController : MonoBehaviour
 
 	private void Update()
 	{
-		Move();
+		// Move();
 		HeadRotate();
+	}
+
+	private void FixedUpdate()
+	{
+		Move();
 	}
 
 	private void Move()
 	{
-		transform.Translate(0, 0, moveDir.z * moveSpeed * Time.deltaTime, Space.Self);
+		if(rigid.velocity.magnitude > maxSpeed)
+		{
+			rigid.velocity = rigid.velocity.normalized * maxSpeed;
+		}
+
+		Vector3 forceDir = transform.forward * moveDir.z;
+		rigid.AddForce(forceDir * movePower, ForceMode.Force);
+		transform.Translate(0, 0, moveDir.z * movePower * Time.deltaTime, Space.Self);
+
 		transform.Rotate(0, moveDir.x * rotateSpeed * Time.deltaTime, 0, Space.Self);
 	}
 	private void OnMove(InputValue value)
