@@ -480,7 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 449329138}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -495,12 +495,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449329137}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.052375793, y: 1.5658315, z: 0.8671064}
+  m_LocalRotation: {x: -0.000000021855696, y: -0, z: 8.881783e-16, w: 1}
+  m_LocalPosition: {x: -0.05238646, y: 0.48619032, z: 0.8924283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2023804817}
+  m_Father: {fileID: 645993231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &491668605
 GameObject:
@@ -847,7 +847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_TagString
@@ -855,23 +855,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100114, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100116, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100118, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100120, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100124, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -916,10 +916,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 400120, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 449329138}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2023804821}
     - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2023804816}
@@ -1280,11 +1283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e697dbd83c0541f44bff63844ca2dcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigid: {fileID: 0}
   firePoint: {fileID: 449329138}
   bulletPrefab: {fileID: 7610411682912987681, guid: bd16d3ce0fae10246aed8a60c6403292, type: 3}
   turretTransform: {fileID: 645993231}
   turretRotateSpeed: 30
-  moveSpeed: 10
+  movePower: 0
+  maxSpeed: 0
   rotateSpeed: 30
 --- !u!114 &2023804820
 MonoBehaviour:
@@ -1316,6 +1321,33 @@ MonoBehaviour:
   m_DefaultActionMap: Tank
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &2023804821
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023804815}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
