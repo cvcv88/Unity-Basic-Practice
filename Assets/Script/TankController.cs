@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,22 @@ public class TankController : MonoBehaviour
 	public Rigidbody rigid;
 
 	public Transform firePoint;
-	public GameObject bulletPrefab;
+	// public GameObject bulletPrefab;
+	public Bullet bulletPrefab;
 
 	public Transform turretTransform;
 	public float turretRotateSpeed;
+
+	public CinemachineVirtualCamera normalCamera;
+	public CinemachineVirtualCamera zoomCamera;
+
+	public AudioSource shootSound;
 
 	// public float moveSpeed;
 	public float movePower; // 움직이는 힘, Speed X
 	public float maxSpeed;
     public float rotateSpeed;
+	public float bulletForce;
 
     private Vector3 moveDir;
 	private Vector3 turretDir;
@@ -67,11 +75,27 @@ public class TankController : MonoBehaviour
 
 	private void Fire()
 	{
-		Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+		Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+		bullet.force = bulletForce;
+		shootSound.Play();
 	}
 
 	private void OnFire(InputValue value)
 	{
 		Fire();
+	}
+
+	private void OnZoom(InputValue value)
+	{
+		if (value.isPressed) // 눌렀을 때 
+		{
+			// 우선순위를 높게
+			zoomCamera.Priority = 50;
+		}
+		else                // 떼었을 때
+		{
+			// 우선순위를 낮게
+			zoomCamera.Priority = 1;
+		}
 	}
 }
