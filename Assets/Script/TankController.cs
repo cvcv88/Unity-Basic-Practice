@@ -20,20 +20,22 @@ public class TankController : MonoBehaviour
 
 	public AudioSource shootSound;
 
+	public Animator animator;
+
 	// public float moveSpeed;
 	public float movePower; // ¿òÁ÷ÀÌ´Â Èû, Speed X
 	public float maxSpeed;
-    public float rotateSpeed;
+	public float rotateSpeed;
 	public float bulletForce;
 
-    private Vector3 moveDir;
+	private Vector3 moveDir;
 	private Vector3 turretDir;
-
 
 	private void Update()
 	{
-		// Move();
-		HeadRotate();
+		Move();
+		Rotate();
+		Head();
 	}
 
 	private void FixedUpdate()
@@ -43,25 +45,32 @@ public class TankController : MonoBehaviour
 
 	private void Move()
 	{
-		if(rigid.velocity.magnitude > maxSpeed)
+		Vector3 forceDir = transform.forward * moveDir.z;
+		rigid.AddForce(forceDir * movePower, ForceMode.Force);
+
+		if (rigid.velocity.magnitude > maxSpeed)
 		{
 			rigid.velocity = rigid.velocity.normalized * maxSpeed;
 		}
 
-		Vector3 forceDir = transform.forward * moveDir.z;
-		rigid.AddForce(forceDir * movePower, ForceMode.Force);
-		transform.Translate(0, 0, moveDir.z * movePower * Time.deltaTime, Space.Self);
-
-		transform.Rotate(0, moveDir.x * rotateSpeed * Time.deltaTime, 0, Space.Self);
+		//transform.Translate(0, 0, moveDir.z * movePower * Time.deltaTime, Space.Self);
+		//transform.Rotate(0, moveDir.x * rotateSpeed * Time.deltaTime, 0, Space.Self);
 	}
+
+	private void Rotate()
+	{
+		transform.Rotate(Vector3.up, moveDir.x * rotateSpeed * Time.deltaTime, Space.World);
+	}
+
 	private void OnMove(InputValue value)
 	{
 		Vector2 inputDir = value.Get<Vector2>();
 		moveDir.x = inputDir.x; // ÁÂ¿ì
 		moveDir.z = inputDir.y; // ¾ÕµÚ
+		Debug.Log(moveDir);
 	}
 
-	private void HeadRotate()
+	private void Head()
 	{
 		turretTransform.Rotate(Vector3.up, turretDir.x * turretRotateSpeed * Time.deltaTime, Space.Self);
 		turretTransform.Rotate(Vector3.right, turretDir.z * -turretRotateSpeed * Time.deltaTime, Space.Self);
@@ -72,12 +81,12 @@ public class TankController : MonoBehaviour
 		turretDir.x = inputDir.x; // ÁÂ¿ì
 		turretDir.z = inputDir.y; // À§ ¾Æ·¡
 	}
-
-	private void Fire()
+	public void Fire()
 	{
 		Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 		bullet.force = bulletForce;
 		shootSound.Play();
+		animator.SetTrigger("Fire");
 	}
 
 	private void OnFire(InputValue value)
