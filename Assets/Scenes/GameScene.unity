@@ -7251,7 +7251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913236061}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14461447, y: -0.63273513, z: 0.12185366, w: 0.7509225}
+  m_LocalRotation: {x: 0.14461447, y: -0.63273513, z: 0.12185364, w: 0.75092256}
   m_LocalPosition: {x: 13.815136, y: 5.0261683, z: -4.725959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7945,7 +7945,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14461447, y: -0.63273513, z: 0.12185366, w: 0.7509225}
+  m_LocalRotation: {x: 0.14461447, y: -0.63273513, z: 0.12185364, w: 0.75092256}
   m_LocalPosition: {x: 13.815136, y: 5.0261683, z: -4.725959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16010,6 +16010,36 @@ MonoBehaviour:
   maxSpeed: 10
   rotateSpeed: 50
   bulletForce: 20
+  OnFired:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2023804824}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnFiring:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2023804825}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Fire
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2023804820
 MonoBehaviour:
   m_ObjectHideFlags: 0

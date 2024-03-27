@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
@@ -30,6 +31,9 @@ public class TankController : MonoBehaviour
 
 	private Vector3 moveDir;
 	private Vector3 turretDir;
+
+	public UnityEvent OnFired; // OnFireExit
+	public UnityEvent OnFiring; // OnFireEnter
 
 	private void Update()
 	{
@@ -83,10 +87,18 @@ public class TankController : MonoBehaviour
 	}
 	public void Fire()
 	{
+		OnFiring?.Invoke();
+
 		Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 		bullet.force = bulletForce;
 		shootSound.Play();
 		animator.SetTrigger("Fire");
+
+		// Manager.GetInstance().AddFireCount();
+		Manager.Data.AddFireCount();
+		Manager.Game.GamePause();
+
+		OnFired?.Invoke();
 	}
 
 	private void OnFire(InputValue value)
